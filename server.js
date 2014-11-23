@@ -1,7 +1,8 @@
 var express = require('express');
 var Promise = require('bluebird');
 var mongodb = require("mongodb");
-var bcrypt = require("bcrypt");
+var bcrypt = require("bcryptjs");
+var MongoClient = require('mongodb').MongoClient
 
 var app = express();
 var db;
