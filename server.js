@@ -24,7 +24,8 @@ app.get('/auth', function (req, res) {
 });
 
 var server = app.listen(80, function () {
-  db = MongoClient.connect('mongodb://172.31.20.72:27017/authentication', function(err, db) {
+  MongoClient.connect('mongodb://172.31.20.72:27017/authentication', function(err, _db) {
     console.log("Connected correctly to server");
+    db = _db;
   });
 });
