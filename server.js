@@ -11,6 +11,10 @@ app.get('/ping', function (req, res) {
   res.send('pong')
 });
 
+app.get('/loaderio-ec93d5d4a283b4c13d2a854bbc7b2806', function (req, res) {
+  res.send('loaderio-ec93d5d4a283b4c13d2a854bbc7b2806')
+});
+
 app.get('/auth', function (req, res) {
   db.collection('users').findOne({username: req.param('username')}, function(err, user) {
     if (err) {
