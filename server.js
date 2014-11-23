@@ -11,8 +11,8 @@ app.get('/ping', function (req, res) {
   res.send('pong')
 });
 
-app.get('/loaderio-ec93d5d4a283b4c13d2a854bbc7b2806', function (req, res) {
-  res.send('loaderio-ec93d5d4a283b4c13d2a854bbc7b2806')
+app.get('/loaderio-44202ea2bb11657c7c63aefa6f7f39d0', function (req, res) {
+  res.send('loaderio-44202ea2bb11657c7c63aefa6f7f39d0')
 });
 
 app.get('/auth', function (req, res) {
