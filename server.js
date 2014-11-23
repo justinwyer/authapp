@@ -12,7 +12,7 @@ app.get('/ping', function (req, res) {
 });
 
 app.get('/auth', function (req, res) {
-  db.collection.findOne({username: req.param('username')}, function(err, user) {
+  db.collection('users').findOne({username: req.param('username')}, function(err, user) {
     bcrypt.compare(req.param('password'), user.password, function(err, res) {
       if (err) {
         res.status(403).end();
