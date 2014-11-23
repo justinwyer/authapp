@@ -22,8 +22,8 @@ app.get('/auth', function (req, res) {
     } else if (user == null) {
       res.sendStatus(204);
     } else {
-      bcrypt.compare(req.param('password'), user.password, function(err, res) {
-        if (err) {
+      bcrypt.compare(req.param('password'), user.password, function(err, result) {
+        if (err || !result) {
           res.sendStatus(204);
         } else {
           res.sendStatus(200);
