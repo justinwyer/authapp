@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
+    "bcrypt": "^2.1.0",
     "bluebird": "^2.3.11",
     "express": "^4.10.2",
     "mongodb": "^1.4.22"
