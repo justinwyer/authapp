@@ -18,15 +18,15 @@ app.get('/loaderio-ec93d5d4a283b4c13d2a854bbc7b2806', function (req, res) {
 app.get('/auth', function (req, res) {
   db.collection('users').findOne({username: req.param('username')}, function(err, user) {
     if (err) {
-      res.status(500).end();
+      res.sendStatus(500);
     } else if (user == null) {
-      res.status(204).end();
+      res.sendStatus(204);
     } else {
       bcrypt.compare(req.param('password'), user.password, function(err, res) {
         if (err) {
-          res.status(204).end();
+          res.sendStatus(204);
         } else {
-          res.status(200).end();
+          res.sendStatus(200);
         }
       });  
     }
