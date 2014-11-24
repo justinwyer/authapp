@@ -22,7 +22,7 @@ app.get('/auth', function (req, res) {
     } else if (user == null) {
       res.sendStatus(204);
     } else {
-      bcrypt.compare(req.param('password'), user.password, function(err, result) {
+      bcrypt.compare(req.param('password'), user.hashedPassword, function(err, result) {
         if (err || !result) {
           res.sendStatus(204);
         } else {
@@ -34,7 +34,7 @@ app.get('/auth', function (req, res) {
 });
 
 var server = app.listen(80, function () {
-  MongoClient.connect('mongodb://172.31.20.72:27017/authentication', function(err, _db) {
+  MongoClient.connect('mongodb://172.31.23.0:27017/authentication', function(err, _db) {
     console.log("Connected correctly to server");
     db = _db;
   });
