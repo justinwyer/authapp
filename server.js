@@ -5,6 +5,7 @@ var bcrypt = require("bcryptjs");
 var pg = require('pg');
 var conString = "postgres://auth:password@auth.ck2fdib66dje.eu-west-1.rds.amazonaws.com:5432/authusers";
 
+pg.defaults.poolSize = 50;
 var app = express();
 var db;
 
