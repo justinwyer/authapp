@@ -23,7 +23,7 @@ app.get('/auth', function (req, res) {
     } else if (value == null) {
       res.sendStatus(204);
     }
-    bcrypt.compare(req.param('password'), result.rows[0].hashedPassword, function(err, result) {
+    bcrypt.compare(req.param('password'), value, function(err, result) {
       if (err || !result) {
         res.sendStatus(204);
       } else {
