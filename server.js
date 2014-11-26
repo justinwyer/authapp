@@ -2,7 +2,7 @@ var express = require('express');
 var Promise = require('bluebird');
 var bcrypt = require("bcryptjs");
 var redis = require("redis"),
-        client = redis.createClient(6379, '', {})
+        client = redis.createClient(6379, '172.31.18.118', {})
 
 var app = express();
 var db;
