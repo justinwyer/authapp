@@ -17,7 +17,7 @@ app.get('/loaderio-ec93d5d4a283b4c13d2a854bbc7b2806', function (req, res) {
 
 app.get('/auth', function (req, res) {
   client.unref()
-  client.get("foo", function (err, value){
+  client.hget(req.param("username"), "hashedPassword", function (err, value){
     if(err) {
       res.sendStatus(500);
     } else if (value == null) {
