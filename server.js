@@ -1,11 +1,9 @@
 var express = require('express');
 var Promise = require('bluebird');
 var bcrypt = require("bcryptjs");
+var redis = require("redis"),
+        client = redis.createClient(6379, '', {})
 
-var pg = require('pg');
-var conString = "postgres://auth:password@auth.ck2fdib66dje.eu-west-1.rds.amazonaws.com:5432/authusers";
-
-pg.defaults.poolSize = 200;
 var app = express();
 var db;
 
@@ -18,25 +16,18 @@ app.get('/loaderio-ec93d5d4a283b4c13d2a854bbc7b2806', function (req, res) {
 });
 
 app.get('/auth', function (req, res) {
-  pg.connect(conString, function(err, client, done) {
+  client.unref()
+  client.get("foo", function (err, value){
     if(err) {
       res.sendStatus(500);
+    } else if (value == null) {
+      res.sendStatus(204);
     }
-    client.query('SELECT * FROM users WHERE username = $1', [req.param('username')], function(err, result) {
-      done();
-      if(err) {
-        res.sendStatus(500);
-      }
-      if (result.rows.length > 0) {
-        bcrypt.compare(req.param('password'), result.rows[0].hashedPassword, function(err, result) {
-          if (err || !result) {
-            res.sendStatus(204);
-          } else {
-            res.sendStatus(200);
-          }
-        });
-      } else {
+    bcrypt.compare(req.param('password'), result.rows[0].hashedPassword, function(err, result) {
+      if (err || !result) {
         res.sendStatus(204);
+      } else {
+        res.sendStatus(200);
       }
     });
   });
